@@ -2,7 +2,7 @@
 
 An analysis of the 72 teams that reached the Final Four in 18 EuroLeague seasons (2007-08 to 2025-26), compared with all other teams of their season, using regular season and Top 16 box score and shot data. It combines a descriptive comparison (distance from the season average, in standard deviations) with a logistic regression and a leave-one-season-out prediction test.
 
-**Brief report:** [open the report](https://htmlpreview.github.io/?https://github.com/viare21/reaching-EL-F4/blob/main/final_four_report.html)
+**Brief report:** [open the report](https://viare21.github.io/reaching-EL-F4/final_four_report.html)
 
 ## Results in brief
 
