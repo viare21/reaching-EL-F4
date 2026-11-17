@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Does It Take to Reach the EuroLeague Final Four?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script>
+window.MathJax = { tex: { displayMath: [['\\[', '\\]']], inlineMath: [['\\(', '\\)']] } };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root {
+    --bg: #F2F5D9;
+    --bg-card: #FBFCEE;
+    --border: #D6DFA8;
+    --text: #16233F;
+    --text-muted: #5B6650;
+    --green: #3E8E4F;
+    --coral: #C6564F;
+    --gold: #B8860B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- HERO ---------- */
+
+  .hero {
+    padding: 96px 0 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 46px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 58ch;
+  }
+
+  /* ---------- SCOREBOARD ---------- */
+
+  .scoreboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 40px 0 0;
+  }
+
+  .stat {
+    background: var(--bg-card);
+    padding: 24px 16px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: clamp(22px, 4vw, 30px);
+    color: var(--green);
+  }
+
+  .stat-label {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- SECTIONS ---------- */
+
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    color: var(--text);
+  }
+
+  .math { margin: 18px 0; overflow-x: auto; text-align: center; }
+  mjx-container { color: var(--text); }
+
+  h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 18px; margin: 20px 0 10px; color: var(--text); }
+
+  h2 .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gold);
+  }
+
+  p { margin-bottom: 16px; color: var(--text); }
+
+  p:last-child { margin-bottom: 0; }
+
+  strong { color: var(--text); }
+
+  em { color: var(--coral); font-style: italic; }
+
+  a { color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(62,142,79,0.35); }
+  a:hover { border-bottom-color: var(--green); }
+
+  ul { padding-left: 20px; margin-bottom: 16px; color: var(--text); }
+  li { margin-bottom: 10px; }
+  li::marker { color: var(--gold); }
+
+  /* ---------- TABLE ---------- */
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14.5px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+  }
+
+  td.num { font-family: 'IBM Plex Mono', monospace; }
+
+  tr.pos td.num { color: var(--green); }
+  tr.neg td.num { color: var(--coral); }
+
+  /* ---------- IMAGES ---------- */
+
+  figure { margin: 28px 0; }
+
+  figure img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: block;
+    box-shadow: 0 8px 24px rgba(22,35,63,0.12);
+  }
+
+  figcaption {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* ---------- CALLOUT ---------- */
+
+  .callout {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 24px 0;
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+
+  .callout strong { color: var(--gold); }
+
+  .note {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  /* ---------- FOOTER ---------- */
+
+  footer {
+    padding: 48px 0 80px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13.5px;
+    padding: 12px 20px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--bg-card);
+  }
+
+  .btn.primary {
+    background: var(--green);
+    color: #FBFCEE;
+    border: none;
+    font-weight: 600;
+  }
+
+  @media (max-width: 560px) {
+    .scoreboard { grid-template-columns: 1fr; }
+    .hero { padding: 64px 0 48px; }
+  }
+
+  /* ---- layout changes ---- */
+  .breakout { width: min(1000px, calc(100vw - 24px)); position: relative; left: 50%; transform: translateX(-50%); margin: 24px 0; }
+  .breakout table { margin: 0; font-size: 13px; }
+  .breakout th, .breakout td { padding: 8px 12px; white-space: nowrap; }
+  .math.breakout { overflow: visible; margin: 22px 0; width: min(1100px, calc(100vw - 24px)); }
+  .math.breakout mjx-container { font-size: 88% !important; }
+  details { margin: 16px 0; }
+  summary { cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--green); padding: 8px 0; }
+  ol { padding-left: 22px; margin-bottom: 16px; color: var(--text); }
+  ol li::marker { color: var(--gold); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">72 Final Four Teams · 18 Seasons · Box Score and Shot Data</div>
+    <h1>What does it take to reach the EuroLeague Final Four?</h1>
+    <p class="subtitle">A comparison of the teams that reach the Final Four with all other teams of their season, using regular season and Top 16 statistics, from distance to the season average to a logistic regression and a leave-one-season-out prediction test.</p>
+
+    <div class="scoreboard">
+      <div class="stat">
+        <div class="stat-value">+1.0</div>
+        <div class="stat-label">standard deviations of eFG% above the season average, for Final Four teams (interval +0.85 to +1.15)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">-0.9</div>
+        <div class="stat-label">standard deviations of opponent eFG%: they concede much lower shooting (interval -1.02 to -0.79)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">2.9 of 4</div>
+        <div class="stat-label">real Final Four teams found by the logistic regression on the test set (random picks find 0.8)</div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h2><span class="tag">01</span> Method</h2>
+    <p>The data are EuroLeague box scores and shot coordinates from the 18 seasons with a Final Four between 2007-08 and 2025-26 (2019-20 was canceled). Only regular season and Top 16 games are used. Play-offs, play-in and Final Four games are left out, so the statistics describe how teams performed before the games that decide who qualifies. For each team and season there are shooting percentages (effective field goal percentage, 2-point, 3-point and paint), turnover rate, offensive rebound percentage and free throw attempts per field goal attempt (FTA per FGA), both for the team and for its opponents, which describes its defence.</p>
+    <p>Each statistic is compared with the average team of the same season. The distance is measured in <strong>standard deviations</strong>: zero is the average team, and one standard deviation is the typical gap between a team and the average. For eFG% it is about 2.7 points. Left of zero means lower than the average, right means higher. For turnover rate and for everything the opponents do, lower is better, so a good defence appears on the left.</p>
+    <p>A logistic regression then puts eight of these statistics in the same model, to see what matters when the others are held fixed. The outcome is 1 if the team reached the Final Four. Results are odds ratios for +1 standard deviation above the average, where 1 means no effect. Finally, the model is tested out of sample: it is fitted on 17 seasons (training set), and it picks the four teams it considers most likely to qualify in the 18th season (test set). This is repeated for each season. It is a leave-one-season-out cross-validation: a whole season is left out each time, not a single team, because the teams of a season share the same average.</p>
+    <h3>The statistics</h3>
+    <p>Each statistic is measured for the team and, in the same way, for its opponents, which describes the team's defence. For the opponents' statistics lower is better, except for the opponent turnover rate, where higher is better because those are turnovers the team forced. Shooting, turnovers, rebounding and free throws are the "four factors" of basketball analytics.</p>
+    <ul>
+      <li><strong>eFG% (effective field goal percentage):</strong> shooting percentage that counts a 3-pointer as worth 1.5 two-pointers.
+        <div class="math">\[ \text{eFG} = \frac{2\,\text{PM} + 1.5 \cdot 3\,\text{PM}}{\text{FGA}} \]</div></li>
+      <li><strong>2PT%, 3PT%, paint FG%:</strong> made shots over attempted shots, for 2-point shots, 3-point shots, and 2-point shots taken inside the key (found from the shot coordinates).</li>
+      <li><strong>Turnover rate:</strong> the share of a team's possessions that end in a turnover. The 0.44 is the usual estimate of how many free throw attempts end a possession.
+        <div class="math">\[ \text{TOV rate} = \frac{\text{TOV}}{\text{FGA} + 0.44\,\text{FTA} + \text{TOV}} \]</div></li>
+      <li><strong>Offensive rebound %:</strong> the share of a team's missed shots that it recovers.
+        <div class="math">\[ \text{ORB rate} = \frac{\text{ORB}}{\text{ORB} + \text{opponent DRB}} \]</div></li>
+      <li><strong>FTA per FGA:</strong> free throw attempts for each field goal attempt, which shows how often a team gets to the line.</li>
+    </ul>
+
+    <h3>The statistical terms</h3>
+    <ul>
+      <li><strong>Standard deviation (SD) and distance from the season average:</strong> the SD measures how far teams typically are from the average of their season. Here <em>x</em> is the team's value of the statistic, &mu; is the average of that statistic across the teams of the season and &sigma; is their standard deviation. A team at +1 SD is as far above the average as a typical team is from it. This puts statistics with different units on the same scale: for eFG%, 1 SD is about 2.7 percentage points, for offensive rebound % it is 3.0.
+        <div class="math">\[ z = \frac{x_{\text{team}} - \mu_{\text{season}}}{\sigma_{\text{season}}} \]</div></li>
+      <li><strong>95% interval (bootstrap):</strong> every number comes from only 18 seasons, so it would change with other seasons. To see by how much, the 18 seasons are resampled at random with replacement 5,000 times, the number is recomputed each time, and the interval is the range holding the middle 95% of those values. It is a plausible range for the true value. If the interval of a gap does not include zero, the gap is unlikely to be due to chance alone.</li>
+      <li><strong>Training set and test set:</strong> a model always fits the data it has seen better than new data. To check it on new data, it is fitted on a training set and tried on a test set it has not seen. Here the test set is a whole season and the training set is the other 17, repeated for each season.</li>
+      <li><strong>p-value:</strong> the probability of a result at least this extreme if there were no real effect. A small one means chance alone is an unlikely explanation. It is not the probability that the effect is real, and it does not say how large the effect is.</li>
+      <li><strong>Multiple comparisons:</strong> if you test many statistics, a few will look different from the average just by luck, like a coin that lands heads several times in a row if you toss enough coins. This report compares 14 statistics and does not correct for that. So one isolated result is a hint, while a pattern that repeats across many statistics, as the shooting results do, is more reliable.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="tag">02</span> Distance from the season average</h2>
+
+    <figure>
+      <img src="images/final_four_teams_vs_league.png" alt="Final Four teams vs all other teams, in standard deviations from the season average">
+      <figcaption>Final Four teams vs all other teams, regular season and Top 16, 18 seasons</figcaption>
+    </figure>
+
+    <p>All 14 statistics are on the better side of the average, and none of the intervals include zero. The biggest gaps are in shooting, on both sides of the ball: eFG% is 1.0 standard deviations above average, and opponent eFG% is 0.9 below. Free throws and the other three factors (rebounds, turnovers) are smaller but still clear.</p><p>In real units: on average, a Final Four team shoots 2.7 points of eFG% better than the average team of its season, and its opponents shoot 2.3 points worse.</p>
+
+    <details>
+      <summary>Show the numbers behind the chart</summary>
+      <div class="breakout">
+<table>
+      <thead>
+        <tr><th>Statistic</th><th>Mean distance (SD)</th><th>95% interval</th><th>Teams better than average</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>eFG%</td><td class="num">+1.00</td><td class="num">+0.85 to +1.15</td><td class="num">62 of 72</td></tr>
+        <tr><td>Opponent eFG%</td><td class="num">-0.91</td><td class="num">-1.02 to -0.79</td><td class="num">65 of 72</td></tr>
+        <tr><td>Opponent 2PT%</td><td class="num">-0.88</td><td class="num">-1.01 to -0.75</td><td class="num">63 of 72</td></tr>
+        <tr><td>2PT%</td><td class="num">+0.87</td><td class="num">+0.71 to +1.02</td><td class="num">58 of 72</td></tr>
+        <tr><td>3PT%</td><td class="num">+0.74</td><td class="num">+0.58 to +0.90</td><td class="num">59 of 72</td></tr>
+        <tr><td>Paint FG%</td><td class="num">+0.60</td><td class="num">+0.44 to +0.76</td><td class="num">55 of 72</td></tr>
+        <tr><td>Opponent paint FG%</td><td class="num">-0.53</td><td class="num">-0.73 to -0.32</td><td class="num">53 of 72</td></tr>
+        <tr><td>Opponent 3PT%</td><td class="num">-0.52</td><td class="num">-0.70 to -0.34</td><td class="num">53 of 72</td></tr>
+        <tr><td>FTA per FGA</td><td class="num">+0.50</td><td class="num">+0.33 to +0.66</td><td class="num">54 of 72</td></tr>
+        <tr><td>Opponent offensive rebound %</td><td class="num">-0.39</td><td class="num">-0.57 to -0.19</td><td class="num">49 of 72</td></tr>
+        <tr><td>Turnover rate</td><td class="num">-0.37</td><td class="num">-0.57 to -0.17</td><td class="num">49 of 72</td></tr>
+        <tr><td>Offensive rebound %</td><td class="num">+0.30</td><td class="num">+0.11 to +0.50</td><td class="num">45 of 72</td></tr>
+        <tr><td>Opponent FTA per FGA</td><td class="num">-0.28</td><td class="num">-0.47 to -0.11</td><td class="num">48 of 72</td></tr>
+        <tr><td>Opponent turnover rate</td><td class="num">+0.25</td><td class="num">+0.07 to +0.45</td><td class="num">41 of 72</td></tr>
+      </tbody>
+    </table>
+      </div>
+    </details>
+    <p class="note">Each interval is a bootstrap over the 18 seasons, averaging the four Final Four teams of each season.</p>
+  </section>
+
+  <section>
+    <h2><span class="tag">03</span> Logistic regression</h2>
+
+    <h3>How to read the model</h3>
+    <p>For each team-season <em>i</em>, let <em>p<sub>i</sub></em> be the probability that the team reaches the Final Four. The model is:</p>
+<div class="math breakout">\[ \log\left(\frac{p_i}{1-p_i}\right) = \beta_0 + \beta_1\,z_{i,\text{eFG}} + \beta_2\,z_{i,\text{TOV}} + \beta_3\,z_{i,\text{ORB}} + \beta_4\,z_{i,\text{FTA}} + \beta_5\,z_{i,\text{opp eFG}} + \beta_6\,z_{i,\text{opp TOV}} + \beta_7\,z_{i,\text{opp ORB}} + \beta_8\,z_{i,\text{opp FTA}} \]</div>
+<p>where each <em>z</em> is the distance of the team from the average of its season, in standard deviations: <em>z</em> = 0 means exactly average on that statistic, <em>z</em> = +1 means one standard deviation above average.</p>
+    <p><strong>Odds</strong> compare the chance that something happens with the chance that it does not: a 20% chance means odds of 1 to 4 (0.25), 50% means 1 to 1, and 80% means 4 to 1. The model works on the logarithm of the odds because a probability must stay between 0 and 1, while the right-hand side of the formula can take any value.</p>
+    <p>&beta; is multiplied by <em>z</em> because the right-hand side is a weighted sum: &beta; is the weight that the model gives to a statistic, and <em>z</em> is how far the team is from average on it, so &beta; &middot; <em>z</em> is the contribution of that statistic to the log-odds of the team. A team exactly average on a statistic (<em>z</em> = 0) gets nothing from it, a team one standard deviation above average gets &beta;, and one two standard deviations above gets 2&beta;. &beta;<sub>0</sub> is the log-odds of a team that is exactly average on all eight statistics.</p>
+    <p>The coefficients &beta; are on a log scale, which is hard to read, so the tables show their exponential, the <strong>odds ratio</strong> (OR):</p>
+    <div class="math">\[ \text{OR}_j = e^{\beta_j} \]</div>
+    <p>Adding &beta; to the log-odds is the same as multiplying the odds by the odds ratio. So the odds ratio is the factor by which the odds are multiplied for +1 standard deviation of that statistic, with the other seven fixed.</p>
+<ul>
+      <li>An odds ratio of <strong>1</strong> means no effect.</li>
+      <li><strong>Above 1:</strong> the higher the statistic, the more likely the team reaches the Final Four. Example, eFG% (OR 4.9): the model gives a team that is average on all eight statistics a 3% chance of reaching the Final Four (odds of about 0.03). With an eFG% one standard deviation higher, about 2.7 points, its odds become 0.03 &times; 4.9 &asymp; 0.15, which is a 13% chance of reaching the Final Four. With two standard deviations (about 5.4 points) it is about 43%.</li>
+      <li><strong>Below 1:</strong> the higher the statistic, the less likely. Example, opponent eFG% (OR 0.18): every extra standard deviation of opponent eFG% (about 2.5 points) multiplies the odds by 0.18. Read the other way, if the opponents shot one standard deviation worse than average, the odds are multiplied by 1 / 0.18 &asymp; 5.5, and the same average team goes from a 3% to a 14% chance of reaching the Final Four. For turnover rate and for the opponents' shooting, rebounds and free throws, lower is better, so a good value is an odds ratio below 1.</li>
+      <li><strong>The same odds ratio does not add the same percentage points to every team.</strong> It multiplies the odds, so the effect depends on the probability the team had before the change. With an odds ratio of 4.9, a team with a 5% chance goes to 21%, one with 20% goes to 55%, and one with 50% goes to 83%.</li>
+      <li>If the 95% interval does not include 1, the statistic is clearly associated with reaching the Final Four.</li>
+    </ul>
+    <p>The model has a <strong>ridge penalty</strong>, which slightly shrinks the coefficients toward zero. With 72 events and eight correlated statistics, a plain fit gives unstable coefficients, and the penalty keeps them from becoming extreme.</p>
+
+    <figure>
+      <img src="images/final_four_regression.png" alt="Odds ratios of reaching the Final Four, logistic regression">
+      <figcaption>Odds ratio of reaching the Final Four for +1 standard deviation above the average team</figcaption>
+    </figure>
+
+<p>With all eight statistics in the same model, the two shooting statistics remain far ahead of the others. In practice, one standard deviation more eFG% (about 2.7 points) multiplies the odds of reaching the Final Four by 4.9, and opponents shooting one standard deviation worse (about 2.5 points lower) multiplies them by about 5.5. The other factors have odds ratios of about 2, or about 0.5 where lower is better: for example, one standard deviation more offensive rebound percentage (about 3 points) doubles the odds. Only opponent FTA per FGA has an interval that includes 1 (0.86, interval 0.64 to 1.14).</p>
+
+    <table>
+      <thead>
+        <tr><th>Statistic</th><th>Odds ratio</th><th>95% interval</th><th>Better direction</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>eFG%</td><td class="num">4.94</td><td class="num">3.51 to 8.24</td><td>higher</td></tr>
+        <tr><td>Turnover rate</td><td class="num">0.52</td><td class="num">0.29 to 0.84</td><td>lower</td></tr>
+        <tr><td>Offensive rebound %</td><td class="num">2.00</td><td class="num">1.45 to 3.34</td><td>higher</td></tr>
+        <tr><td>FTA per FGA</td><td class="num">1.63</td><td class="num">1.11 to 2.66</td><td>higher</td></tr>
+        <tr><td>Opponent eFG%</td><td class="num">0.18</td><td class="num">0.11 to 0.26</td><td>lower</td></tr>
+        <tr><td>Opponent turnover rate</td><td class="num">2.28</td><td class="num">1.67 to 3.47</td><td>higher</td></tr>
+        <tr><td>Opponent offensive rebound %</td><td class="num">0.53</td><td class="num">0.32 to 0.84</td><td>lower</td></tr>
+        <tr><td>Opponent FTA per FGA</td><td class="num">0.86</td><td class="num">0.64 to 1.14</td><td>lower</td></tr>
+      </tbody>
+    </table>
+
+
+  </section>
+
+  <section>
+    <h2><span class="tag">04</span> Can we predict who reaches the Final Four?</h2>
+    <p>The best test of a model is to see whether it works on data it has never seen. For each of the 18 seasons we used only regular season and Top 16 statistics, that is, everything that comes before the play-offs that decide who qualifies, and we did the following:</p>
+    <ol>
+      <li>hide that season;</li>
+      <li>fit the model on the other 17 seasons (training set);</li>
+      <li>give the model the statistics of the teams of the hidden season (test set, about 20 teams) and let it pick the four with the highest probability of reaching the Final Four;</li>
+      <li>compare these four picks with the four teams that really got there.</li>
+    </ol>
+    <p><strong>The model found, on average, 2.9 of the 4 real Final Four teams per season</strong> (95% interval 2.7 to 3.0). In 16 seasons out of 18 it found exactly 3 of the 4, in the other 2 it found 2, and it never found all 4. For example, in 2024-25 it picked Anadolu Efes, Olympiacos, Panathinaikos and Monaco, and the real Final Four were Monaco, Olympiacos, Panathinaikos and Fenerbahce.</p>
+    <p>Picking 4 teams at random finds 0.8 on average: with about 20 teams, each has roughly 1 chance in 5, so 4 random picks contain 0.8 real ones. At random, finding 3 or more happens in only about 1 season out of 70. In 20,000 simulated random draws the best average was 1.56, far from 2.9 (p &lt; 0.001).</p>
+    <p>A model with only eFG% and opponent eFG% finds 2.7 of the 4. One that uses only the four offensive statistics finds 2.4, and one that uses only the four defensive statistics finds 2.1.</p>
+  </section>
+
+  <section>
+    <h2><span class="tag">05</span> How robust are these effects?</h2>
+    <p>A standard deviation is only a way to compare statistics. In their own units, the gaps of the Final Four teams from the season average are the following.</p>
+
+    <table>
+      <thead>
+        <tr><th>Statistic</th><th>Gap (points)</th><th>95% interval</th><th>One SD (points)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>eFG%</td><td class="num">+2.75</td><td class="num">+2.18 to +3.34</td><td class="num">2.65</td></tr>
+        <tr><td>Opponent eFG%</td><td class="num">-2.27</td><td class="num">-2.66 to -1.89</td><td class="num">2.45</td></tr>
+        <tr><td>2PT%</td><td class="num">+2.46</td><td class="num">+1.91 to +3.04</td><td class="num">2.74</td></tr>
+        <tr><td>3PT%</td><td class="num">+2.14</td><td class="num">+1.58 to +2.68</td><td class="num">2.77</td></tr>
+        <tr><td>FTA per FGA</td><td class="num">+1.84</td><td class="num">+1.14 to +2.50</td><td class="num">3.74</td></tr>
+        <tr><td>Opponent FTA per FGA</td><td class="num">-1.29</td><td class="num">-2.20 to -0.44</td><td class="num">4.62</td></tr>
+        <tr><td>Offensive rebound %</td><td class="num">+0.88</td><td class="num">+0.21 to +1.51</td><td class="num">3.01</td></tr>
+        <tr><td>Opponent offensive rebound %</td><td class="num">-0.93</td><td class="num">-1.33 to -0.52</td><td class="num">2.38</td></tr>
+        <tr><td>Turnover rate</td><td class="num">-0.60</td><td class="num">-0.91 to -0.29</td><td class="num">1.47</td></tr>
+        <tr><td>Opponent turnover rate</td><td class="num">+0.42</td><td class="num">+0.12 to +0.75</td><td class="num">1.46</td></tr>
+      </tbody>
+    </table>
+    <p>Shooting gaps are large, about 2.7 points of eFG% above average and 2.3 points below for the opponents. The gaps in rebounds, turnovers and free throws are modest: 0.9 points of offensive rebound percentage, 0.6 points of turnover rate. They are different from zero, but small next to shooting.</p>
+    <ul>
+      <li><strong>Do the six extra statistics improve the picks?</strong> Not clearly. The full model finds 0.17 more teams per season than the model with only eFG% and opponent eFG%, and the interval of this difference (-0.22 to +0.56) includes zero.</li>
+      <li><strong>Do the other statistics add to shooting?</strong> A likelihood ratio test compares the model with only the two shooting statistics with the model that also has the other six, and asks whether the larger one fits better than chance would explain. It gives p &lt; 0.001: the extra statistics improve the fit. One at a time, offensive rebounds, turnovers forced, FTA per FGA and turnover rate add information. Opponent offensive rebounds are borderline (p = 0.050) and opponent FTA per FGA adds nothing (p = 0.74). These tests treat team-seasons as independent and are not corrected for multiple comparisons.</li>
+      <li><strong>Two eras:</strong> fitted separately on 2007-08 to 2015-16 and on 2016-17 to 2025-26 (36 Final Four teams each), every statistic keeps the same direction. The odds ratio of eFG% is 5.1 and 5.3, that of opponent eFG% 5.3 and 5.5. The weaker ones vary more (FTA per FGA 1.15 against 2.51).</li>
+      <li><strong>Dropping one season at a time:</strong> the odds ratios stay in a narrow range (eFG% from 4.4 to 5.3, offensive rebound % from 1.8 to 2.3) and none changes direction.</li>
+    </ul>
+    <p>In short, the effect of shooting is large and stable, while the effects of rebounds, turnovers and free throws are modest in size but consistent in direction.</p>
+  </section>
+
+  <section>
+    <h2><span class="tag">06</span> And the champions?</h2>
+<p>We ran the same analysis on the 18 champions alone, instead of the 72 Final Four teams. Like every Final Four team, the champions shoot well: their eFG% is on average 2.5 points above the average team of their season (interval 1.7 to 3.5), their opponents' eFG% is 1.8 points lower, they get 3.2 more free throw attempts per 100 field goal attempts, and their turnover rate is 0.9 points lower.</p>
+    <p>In other areas, though, champions look like an average team. Their offensive rebound percentage is only 0.3 points above average (interval -0.9 to +1.4), they force 0.3 points more turnovers (interval -0.3 to +0.9), and their opponents get 0.7 points fewer offensive rebounds (interval -1.6 to +0.3). All three intervals include zero, which means that, with 18 champions, we cannot tell these gaps from no gap. The regression gives the same message: for offensive rebounds the odds ratio is 1.1 (interval 0.7 to 1.8), and an interval that includes 1 means no clear effect.</p>
+    <p><strong>The champion against the other three finalists.</strong> Compared with the other three Final Four teams of the same season, the champions show no clear difference on any statistic. In other words, season statistics help to find who reaches the Final Four, but not who wins it once there. With 18 seasons we cannot tell why: either the champion's edge over the other finalists is small, so that 18 seasons are too few to see it, or the title depends on factors that season statistics do not capture.</p>
+  </section>
+
+  <section>
+    <h2><span class="tag">07</span> Limitations</h2>
+    <ul>
+      <li><strong>Descriptive, not causal:</strong> the analysis shows what Final Four teams have in common. It does not say that improving a statistic would take a team there.</li>
+      <li><strong>Selection:</strong> Final Four teams are among the best of the season, so these statistics partly measure being a strong team.</li>
+      <li><strong>Correlated statistics:</strong> a team that shoots well also tends to score well in the paint, so single odds ratios should be read with caution. Only the four factors are in the regression for this reason, and because 72 events do not support a larger model.</li>
+      <li><strong>Many comparisons:</strong> 14 statistics are compared, and the intervals are not corrected for multiple comparisons.</li>
+      <li><strong>Champions:</strong> only 18 cases, so small differences cannot be detected.</li>
+      <li><strong>Easy points not included:</strong> fast break, second chance and turnover points exist in the dataset only from 2015-16 on, with gaps, so they cover about 9 seasons. In that subset the champions are in line with the average on all of them, except for conceding fewer points off turnovers, which is one comparison out of 21 and does not hold after correcting for multiple comparisons.</li>
+      <li><strong>Data quality:</strong> one team row has team total points different from the official score (the official score is used for margins), and 551 shot rows have placeholder coordinates and are left out of the paint figures.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="tag">08</span> Takeaways</h2>
+<ul>
+      <li>Reaching the Final Four goes with shooting well and making the opponent shoot badly: about 2.7 points of eFG% above the season average, and opponents 2.3 points below. These are by far the biggest gaps among the 14 statistics.</li>
+      <li>Rebounds, turnovers and free throws also matter, with smaller but stable gaps.</li>
+      <li>These statistics are enough to find most of the Final Four: a model fitted on 17 seasons found 3 of the 4 real Final Four teams of the 18th in 16 seasons out of 18, against about 1 season out of 70 for random picks.</li>
+      <li>Among the teams that get there, no statistic clearly separates the champion from the other three finalists.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <a class="btn primary" href="https://github.com/viare21/reaching-EL-F4" target="_blank">View code on GitHub</a>
+    <a class="btn" href="https://federicoviarengo.com/" target="_blank">Back to portfolio</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
